@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" class="night">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tima — 3D Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#d8ccb6;
+  --bg2:#e1d6c2;
+  --panel:rgba(55,60,40,0.04);
+  --ink:#262318;
+  --ink-soft:#4c4636;
+  --muted:#7f7561;
+  --line:rgba(70,68,44,0.20);
+  --line-strong:rgba(70,68,44,0.40);
+  --accent:#566e3c;
+  --accent-deep:#3c5128;
+  --accent-soft:rgba(86,110,60,0.42);
+  --brown:#835a2e;
+  --rust:#a85322;
+  --shadow:rgba(50,48,30,0.18);
+  --fog:rgba(222,212,193,0.92);
+}
+html.night{
+  --bg:#100b06;
+  --bg2:#1a1209;
+  --panel:rgba(210,205,170,0.022);
+  --ink:#d9d3c3;
+  --ink-soft:#ada48c;
+  --muted:#857a66;
+  --line:rgba(205,196,160,0.15);
+  --line-strong:rgba(205,196,160,0.30);
+  --accent:#8ba26f;
+  --accent-deep:#a8bd8c;
+  --accent-soft:rgba(139,162,111,0.42);
+  --brown:#b3854f;
+  --rust:#c87a33;
+  --shadow:rgba(0,0,0,0.55);
+  --fog:rgba(15,10,5,0.9);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'EB Garamond',Georgia,serif;
+  font-size:18px;
+  line-height:1.7;
+  letter-spacing:.2px;
+  min-height:100vh;
+  transition:background .5s ease,color .5s ease;
+  background-image:
+    radial-gradient(135% 85% at 50% 48%, rgba(0,0,0,0) 30%, var(--fog) 100%),
+    linear-gradient(180deg, var(--fog), rgba(0,0,0,0) 48%),
+    linear-gradient(0deg, var(--fog), rgba(0,0,0,0) 52%),
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='900'%20height='900'%20viewBox='0%200%20900%20900'%3E%3Cg%20fill='none'%20stroke='%239b7a54'%20stroke-opacity='0.09'%20stroke-width='1'%3E%3Cpath%20d='M-60,450C160,230%20300,680%20520,450S900,230%20980,450'/%3E%3Cpath%20d='M450,-60C230,160%20680,300%20450,520S230,900%20450,980'/%3E%3Cpath%20d='M0,0C220,180%20450,120%20680,300S900,600%20900,900'/%3E%3Cpath%20d='M900,0C720,220%20780,450%20600,640S300,780%200,900'/%3E%3Cpath%20d='M0,900C240,700%20350,540%20450,450S600,280%20900,0'/%3E%3Cpath%20d='M900,900C660,700%20560,540%20450,450S280,280%200,0'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='300'%20height='300'%20viewBox='0%200%20300%20300'%3E%3Cg%20fill='none'%20stroke='%239b7a54'%20stroke-opacity='0.17'%20stroke-width='0.8'%3E%3Cpath%20d='M150.0,0.0%20C%2060.0,90.0%20240.0,210.0%20150.0,300.0'/%3E%3Cg%20transform='rotate(-71.1%20128.3%2033.6)'%3E%3Cpath%20d='M128.3,33.6%20C%20121.6,27.2%20125.6,20.0%20128.3,17.6%20C%20131.0,20.0%20135.1,27.2%20128.3,33.6%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(77.15%20127.3%2087.5)'%3E%3Cpath%20d='M127.3,87.5%20C%20122.3,82.7%20125.3,77.3%20127.3,75.5%20C%20129.3,77.3%20132.4,82.7%20127.3,87.5%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(246.8%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,150.0%20C%20142.4,142.8%20147.0,134.7%20150.0,132.0%20C%20153.0,134.7%20157.6,142.8%20150.0,150.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(77.15%20172.7%20212.5)'%3E%3Cpath%20d='M172.7,212.5%20C%20167.6,207.7%20170.7,202.3%20172.7,200.5%20C%20174.7,202.3%20177.7,207.7%20172.7,212.5%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-66.54%20169.4%20272.2)'%3E%3Cpath%20d='M169.4,272.2%20C%20162.7,265.8%20166.8,258.6%20169.4,256.2%20C%20172.1,258.6%20176.2,265.8%20169.4,272.2%20Z'/%3E%3C/g%3E%3Cpath%20d='M0.0,150.0%20C%2090.0,60.0%20210.0,240.0%20300.0,150.0'/%3E%3Cg%20transform='rotate(161.1%2033.6%20128.3)'%3E%3Cpath%20d='M33.6,128.3%20C%2026.9,121.9%2030.9,114.7%2033.6,112.3%20C%2036.3,114.7%2040.3,121.9%2033.6,128.3%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(12.85%2087.5%20127.3)'%3E%3Cpath%20d='M87.5,127.3%20C%2082.4,122.5%2085.5,117.1%2087.5,115.3%20C%2089.5,117.1%2092.5,122.5%2087.5,127.3%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(203.2%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,150.0%20C%20142.4,142.8%20147.0,134.7%20150.0,132.0%20C%20153.0,134.7%20157.6,142.8%20150.0,150.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(12.85%20212.5%20172.7)'%3E%3Cpath%20d='M212.5,172.7%20C%20207.5,167.9%20210.5,162.5%20212.5,160.7%20C%20214.5,162.5%20217.6,167.9%20212.5,172.7%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(156.5%20272.2%20169.4)'%3E%3Cpath%20d='M272.2,169.4%20C%20265.4,163.0%20269.5,155.8%20272.2,153.4%20C%20274.8,155.8%20278.9,163.0%20272.2,169.4%20Z'/%3E%3C/g%3E%3Cpath%20d='M0.0,0.0%20C%20120.0,80.0%20180.0,220.0%20300.0,300.0'/%3E%3Cg%20transform='rotate(222.3%2050.4%2039.6)'%3E%3Cpath%20d='M50.4,39.6%20C%2044.5,34.0%2048.0,27.7%2050.4,25.6%20C%2052.7,27.7%2056.2,34.0%2050.4,39.6%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(50.03%20122.9%20117.1)'%3E%3Cpath%20d='M122.9,117.1%20C%20115.3,109.9%20119.9,101.8%20122.9,99.1%20C%20125.9,101.8%20130.4,109.9%20122.9,117.1%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(230%20177.1%20182.9)'%3E%3Cpath%20d='M177.1,182.9%20C%20169.6,175.7%20174.1,167.6%20177.1,164.9%20C%20180.1,167.6%20184.7,175.7%20177.1,182.9%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(42.31%20249.6%20260.4)'%3E%3Cpath%20d='M249.6,260.4%20C%20243.8,254.8%20247.3,248.5%20249.6,246.4%20C%20252.0,248.5%20255.5,254.8%20249.6,260.4%20Z'/%3E%3C/g%3E%3Cpath%20d='M300.0,0.0%20C%20180.0,80.0%20120.0,220.0%200.0,300.0'/%3E%3Cg%20transform='rotate(-42.31%20249.6%2039.6)'%3E%3Cpath%20d='M249.6,39.6%20C%20243.8,34.0%20247.3,27.7%20249.6,25.6%20C%20252.0,27.7%20255.5,34.0%20249.6,39.6%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(130%20177.1%20117.1)'%3E%3Cpath%20d='M177.1,117.1%20C%20169.6,109.9%20174.1,101.8%20177.1,99.1%20C%20180.1,101.8%20184.7,109.9%20177.1,117.1%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-50.03%20122.9%20182.9)'%3E%3Cpath%20d='M122.9,182.9%20C%20115.3,175.7%20119.9,167.6%20122.9,164.9%20C%20125.9,167.6%20130.4,175.7%20122.9,182.9%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(137.7%2050.4%20260.4)'%3E%3Cpath%20d='M50.4,260.4%20C%2044.5,254.8%2048.0,248.5%2050.4,246.4%20C%2052.7,248.5%2056.2,254.8%2050.4,260.4%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(0%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(30%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(60%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(90%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(120%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(150%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(180%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(210%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(240%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(270%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(300%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(330%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,132.0%20C%20138.0,120.0%20145.2,106.5%20150.0,102.0%20C%20154.8,106.5%20162.0,120.0%20150.0,132.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(15%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(45%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(75%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(105%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(135%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(165%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(195%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(225%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(255%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(285%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(315%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(345%20150.0%20150.0)'%3E%3Cpath%20d='M150.0,140.0%20C%20143.0,133.6%20147.2,126.4%20150.0,124.0%20C%20152.8,126.4%20157.0,133.6%20150.0,140.0%20Z'/%3E%3C/g%3E%3Cg%20transform='translate(220.0,150.0)%20rotate(90)%20scale(1.4)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3Cg%20transform='translate(199.5,199.5)%20rotate(135)%20scale(1.4)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3Cg%20transform='translate(150.0,220.0)%20rotate(180)%20scale(1.4)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3Cg%20transform='translate(100.5,199.5)%20rotate(225)%20scale(1.4)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3Cg%20transform='translate(80.0,150.0)%20rotate(270)%20scale(1.4)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3Cg%20transform='translate(100.5,100.5)%20rotate(315)%20scale(1.4)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3Cg%20transform='translate(150.0,80.0)%20rotate(360)%20scale(1.4)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3Cg%20transform='translate(199.5,100.5)%20rotate(405)%20scale(1.4)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='210'%20height='210'%20viewBox='0%200%20210%20210'%3E%3Cg%20fill='none'%20stroke='%239b7a54'%20stroke-opacity='0.15'%20stroke-width='0.7'%3E%3Cg%20transform='translate(105.0,105.0)%20rotate(0)%20scale(1.5)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(105.0,105.0)%20rotate(180)%20scale(1.2)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(0.0,0.0)%20rotate(30)%20scale(1.25)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(210.0,0.0)%20rotate(150)%20scale(1.25)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(0.0,210.0)%20rotate(300)%20scale(1.25)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(210.0,210.0)%20rotate(210)%20scale(1.25)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(105.0,0.0)%20rotate(90)%20scale(0.95)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(0.0,105.0)%20rotate(0)%20scale(0.95)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(210.0,105.0)%20rotate(180)%20scale(0.95)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(105.0,210.0)%20rotate(270)%20scale(0.95)'%3E%3Cpath%20d='M0,14%20C%20-4,6%204,-2%200,-12'/%3E%3Cg%20transform='rotate(-38%200.0%206.0)'%3E%3Cpath%20d='M0.0,6.0%20C%20-4.6,1.6%20-1.8,-3.3%200.0,-5.0%20C%201.8,-3.3%204.6,1.6%200.0,6.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(32%200.0%202.0)'%3E%3Cpath%20d='M0.0,2.0%20C%20-5.0,-2.8%20-2.0,-8.2%200.0,-10.0%20C%202.0,-8.2%205.0,-2.8%200.0,2.0%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(-20%200.0%20-4.0)'%3E%3Cpath%20d='M0.0,-4.0%20C%20-4.0,-8.0%20-1.6,-12.5%200.0,-14.0%20C%201.6,-12.5%204.0,-8.0%200.0,-4.0%20Z'/%3E%3C/g%3E%3Cpath%20d='M0,-12%20c%205,-3%2010,1%209,7%20c%20-1,4%20-6,5%20-8,1'/%3E%3C/g%3E%3Cg%20transform='translate(65.0,75.0)%20rotate(40)%20scale(1.2)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3Cg%20transform='translate(145.0,135.0)%20rotate(220)%20scale(1.2)'%3E%3Cpath%20d='m0,0%20c%207,-4%2014,2%2013,10%20c%20-1,6%20-8,8%20-11,3%20c%20-2,-3%201,-8%205,-6'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='46'%20height='46'%20viewBox='0%200%2046%2046'%3E%3Cg%20fill='none'%20stroke='%239b7a54'%20stroke-opacity='0.13'%20stroke-width='0.55'%3E%3Cpath%20d='M23.0,0.0%20C%2010.0,15.0%2036.0,31.0%2023.0,46.0'/%3E%3Cg%20transform='rotate(257.6%2019.7%2013.7)'%3E%3Cpath%20d='M19.7,13.7%20C%2016.8,10.9%2018.5,7.8%2019.7,6.7%20C%2020.9,7.8%2022.7,10.9%2019.7,13.7%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(77.64%2026.3%2032.3)'%3E%3Cpath%20d='M26.3,32.3%20C%2023.3,29.5%2025.1,26.3%2026.3,25.3%20C%2027.5,26.3%2029.2,29.5%2026.3,32.3%20Z'/%3E%3C/g%3E%3Cpath%20d='M0.0,23.0%20C%2015.0,10.0%2031.0,36.0%2046.0,23.0'/%3E%3Cg%20transform='rotate(192.4%2013.7%2019.7)'%3E%3Cpath%20d='M13.7,19.7%20C%2010.8,16.9%2012.5,13.8%2013.7,12.7%20C%2014.9,13.8%2016.7,16.9%2013.7,19.7%20Z'/%3E%3C/g%3E%3Cg%20transform='rotate(12.36%2032.3%2026.3)'%3E%3Cpath%20d='M32.3,26.3%20C%2029.3,23.5%2031.1,20.3%2032.3,19.3%20C%2033.5,20.3%2035.2,23.5%2032.3,26.3%20Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size:auto,auto,auto,940px 940px,300px 300px,210px 210px,46px 46px;
+  background-position:center,center top,center bottom,center,center,center,center;
+  background-attachment:fixed;
+}
+
+/* ---------- shared ornaments ---------- */
+.eyebrow{
+  font-family:'EB Garamond',serif;
+  text-transform:uppercase;
+  letter-spacing:.42em;
+  font-size:.66rem;
+  color:var(--muted);
+  font-weight:500;
+}
+.accent-eyebrow{color:var(--accent)}
+.c-brown{color:var(--brown)}
+.c-rust{color:var(--rust)}
+.script{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500}
+
+.rule{
+  display:flex;align-items:center;justify-content:center;gap:1.1rem;
+  margin:0 auto;
+  color:var(--accent);
+  width:min(560px,80%);
+}
+.rule::before,.rule::after{
+  content:"";height:1px;flex:1;
+  background:linear-gradient(90deg,transparent,var(--line-strong));
+}
+.rule::after{background:linear-gradient(90deg,var(--line-strong),transparent)}
+.rule .gem{
+  font-size:.7rem;color:var(--accent);letter-spacing:.5em;
+  transform:translateX(.25em);
+}
+
+/* corner-bracket frame */
+.frame{position:relative;padding:14px}
+.frame::before,.frame::after,
+.frame > .br::before,.frame > .br::after{
+  content:"";position:absolute;width:26px;height:26px;
+  border:1px solid var(--line-strong);
+}
+.frame::before{top:0;left:0;border-right:0;border-bottom:0}
+.frame::after{top:0;right:0;border-left:0;border-bottom:0}
+.frame > .br::before{bottom:0;left:0;border-right:0;border-top:0}
+.frame > .br::after{bottom:0;right:0;border-left:0;border-top:0}
+
+/* ---------- layout ---------- */
+.shell{
+  max-width:1080px;margin:0 auto;
+  padding:clamp(28px,5vw,64px) clamp(20px,5vw,56px) 80px;
+}
+.outer{
+  border:1px solid var(--line);
+  outline:1px solid var(--line);
+  outline-offset:6px;
+  margin:18px;
+}
+@media(max-width:640px){.outer{margin:8px;outline-offset:3px}}
+
+section{margin-top:clamp(56px,8vw,104px)}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+}
+.topbar .brand{display:flex;align-items:center;gap:.7rem}
+.topbar .brand .dot{color:var(--accent)}
+.toggle{
+  font-family:'EB Garamond',serif;
+  text-transform:uppercase;letter-spacing:.28em;font-size:.62rem;
+  color:var(--ink-soft);
+  background:var(--panel);
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  padding:.5rem 1rem;cursor:pointer;
+  display:inline-flex;align-items:center;gap:.5rem;
+  transition:.3s ease;
+}
+.toggle:hover{color:var(--accent);border-color:var(--accent-soft)}
+.toggle .ic{color:var(--accent)}
+
+/* ---------- hero ---------- */
+.hero{text-align:center;margin-top:clamp(40px,7vw,80px)}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-weight:500;
+  font-size:clamp(4.4rem,15vw,10rem);
+  line-height:.9;
+  letter-spacing:.01em;
+  color:var(--ink);
+  text-shadow:none;
+}
+.hero .sub{
+  margin-top:1.2rem;
+  text-transform:uppercase;letter-spacing:.5em;
+  font-size:.74rem;color:var(--ink-soft);
+  padding-left:.5em;
+}
+.hero .lead{
+  max-width:46ch;margin:1.6rem auto 0;
+  color:var(--ink-soft);font-size:1.05rem;font-style:italic;
+}
+.hero .rule{margin-top:2.4rem}
+
+/* ---------- section heads ---------- */
+.shead{text-align:center;margin-bottom:2.6rem}
+.shead .eyebrow{display:block;margin-bottom:.7rem}
+.shead h2{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  font-size:clamp(2.2rem,5vw,3.4rem);color:var(--ink);line-height:1;
+}
+
+/* ---------- featured ---------- */
+.featured .stage{
+  position:relative;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,244,238,0.02),transparent);
+  padding:clamp(14px,3vw,26px);
+}
+.media{
+  position:relative;overflow:visible;
+  background:var(--bg2);
+  border:1px solid var(--line);
+}
+.media img{border-radius:inherit}
+.frame,.featured .stage,.gallery,.scraps-grid{overflow:visible}
+.media img{
+  display:block;width:100%;height:100%;object-fit:cover;
+  filter:saturate(1.02) contrast(1.02);
+  transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .6s;
+}
+.media:hover img{transform:scale(1.035)}
+.featured .media{aspect-ratio:16/9}
+.media .ph{
+  display:none;position:absolute;inset:0;
+  align-items:center;justify-content:center;flex-direction:column;gap:.6rem;
+  color:var(--muted);text-align:center;padding:2rem;
+  background:
+    repeating-linear-gradient(45deg,rgba(109,123,98,0.07) 0 2px,transparent 2px 12px),
+    var(--bg2);
+}
+.media .ph .eyebrow{color:var(--accent)}
+.media[data-failed="1"] img{display:none}
+.media[data-failed="1"] .ph{display:flex}
+
+/* ---------- volumetric cloud overlay (WebGL) ---------- */
+#cloudgl{position:absolute;top:0;left:0;width:100%;height:0;pointer-events:none;z-index:5}
+.about .frame{position:relative}
+#aboutCloudL,#aboutCloudR,#aboutCloudB{position:absolute;pointer-events:none}
+#aboutCloudL{left:-4%;top:-14px;width:34%;height:84px}
+#aboutCloudR{right:-4%;top:-14px;width:34%;height:84px}
+#aboutCloudB{left:0;right:0;bottom:-28px;height:134px}
+.outer{position:relative}
+#topCloud{position:absolute;left:0;right:0;pointer-events:none;top:0;height:430px}
+.media{isolation:isolate}
+
+.featured .caption{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:1.5rem;flex-wrap:wrap;margin-top:1.6rem;
+}
+.featured .caption h3{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--ink);line-height:1.05;
+}
+.featured .caption p{color:var(--ink-soft);max-width:44ch;font-size:1rem}
+.tagrow{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}
+.tag{
+  font-family:'EB Garamond',serif;text-transform:uppercase;
+  letter-spacing:.24em;font-size:.6rem;color:var(--brown);
+  border:1px solid var(--accent-soft);border-radius:999px;padding:.35rem .85rem;
+}
+.crest{
+  font-family:'EB Garamond',serif;text-transform:uppercase;letter-spacing:.34em;
+  font-size:.62rem;color:var(--accent);white-space:nowrap;
+}
+
+/* ---------- gallery grid ---------- */
+.grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,34px);
+}
+@media(max-width:820px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.grid{grid-template-columns:1fr}}
+.card .media{aspect-ratio:4/3}
+.card h3{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  font-size:1.5rem;color:var(--ink);margin-top:1rem;text-align:center;
+}
+.card .meta{
+  text-align:center;text-transform:uppercase;letter-spacing:.28em;
+  font-size:.58rem;color:var(--muted);margin-top:.35rem;
+}
+
+/* ---------- about ---------- */
+.about .panel{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,244,238,0.025),transparent);
+  padding:clamp(28px,5vw,56px);
+  max-width:760px;margin:0 auto;
+}
+.about .panel .initial{
+  float:left;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:3rem;line-height:.82;color:var(--rust);
+  margin:.04em .2em 0 0;
+}
+.about p{color:var(--ink-soft);margin-bottom:1.1rem;font-size:1.08rem}
+.about p:last-child{margin-bottom:0}
+.about .signoff{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--accent);font-size:1.5rem;text-align:right;margin-top:1.6rem;
+}
+
+/* ---------- scraps ---------- */
+.scraps-section{margin-top:clamp(48px,7vw,86px)}
+.scraps{border:1px solid var(--line);background:var(--panel)}
+.scraps>summary{
+  list-style:none;cursor:pointer;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:.45rem;
+  padding:clamp(1.2rem,3vw,1.9rem);transition:background .3s ease;
+}
+.scraps>summary::-webkit-details-marker{display:none}
+.scraps>summary:hover .scraps-title{color:var(--accent)}
+.scraps .scraps-title{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;
+  font-size:clamp(2rem,4.5vw,3rem);color:var(--ink);line-height:1;
+}
+.scraps .scraps-hint{
+  text-transform:uppercase;letter-spacing:.3em;font-size:.56rem;color:var(--muted);
+}
+.scraps .scraps-hint::before{content:'+  Expand'}
+.scraps[open] .scraps-hint::before{content:'\2212  Collapse'}
+.scraps-grid{padding:0 clamp(14px,3vw,30px) clamp(22px,4vw,38px)}
+.scraps-grid .card .media{aspect-ratio:4/3}
+
+/* ---------- footer ---------- */
+footer{text-align:center;margin-top:clamp(60px,9vw,110px)}
+footer .rule{margin-bottom:1.6rem}
+footer .name{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:2rem;color:var(--ink);
+}
+footer .fine{
+  text-transform:uppercase;letter-spacing:.34em;font-size:.6rem;
+  color:var(--muted);margin-top:.7rem;
+}
+  [data-img] img{cursor:zoom-in}
+  #lightbox{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(8,6,3,0.93);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:zoom-out;padding:4vmin}
+  #lightbox.open{display:flex}
+  #lightbox img{max-width:96vw;max-height:92vh;width:auto;height:auto;border-radius:6px;box-shadow:0 30px 90px rgba(0,0,0,0.6);object-fit:contain;cursor:zoom-out}
+  #lightbox .lb-close{position:absolute;top:16px;right:24px;font:600 30px/1 Georgia,serif;color:#e9e2d2;background:none;border:none;cursor:pointer;opacity:0.75;transition:opacity .15s}
+  #lightbox .lb-close:hover{opacity:1}
+</style>
+</head>
+<body>
+<canvas id="cloudgl"></canvas>
+<div class="outer">
+<div id="topCloud"></div>
+<main class="shell">
+
+  <header class="topbar">
+    <span class="brand eyebrow">3D Artist &amp; Studio Developer</span>
+    <button class="toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode">
+      <span class="ic" id="themeIcon">&#9728;</span><span id="themeLabel">Day mode</span>
+    </button>
+  </header>
+
+  <section class="hero" style="margin-top:clamp(40px,7vw,80px)">
+    <span class="eyebrow accent-eyebrow">Tima</span>
+    <h1>My Portfolio</h1>
+    <div class="rule"><span class="gem">&#9670; &#9670; &#9670;</span></div>
+  </section>
+
+  <!-- ================= FEATURED ================= -->
+  <section class="featured">
+    <div class="shead">
+      <span class="eyebrow accent-eyebrow c-brown">Featured Work</span>
+    </div>
+    <div class="frame"><span class="br"></span>
+      <div class="stage">
+        <div class="media" data-img>
+          <img src="https://media.discordapp.net/attachments/1517117620451676190/1517117767629672488/image.png?ex=6a351d86&is=6a33cc06&hm=25cc9907c11ed4135f7817a923f99fcf53407646a8eac27a9105acfa0bbd07c6&=&format=webp&quality=lossless&width=1703&height=958" alt="Featured 3D render by Tima" loading="lazy" decoding="async">
+          <div class="ph"><span class="eyebrow">Featured Render</span><span>Image unavailable &middot; replace the src with your file</span></div>
+        </div>
+        <div class="caption">
+          <div>
+            <div class="tagrow">
+              <span class="tag">Gaea</span>
+              <span class="tag">KTT for Houdini</span>
+              <span class="tag">Realistic Render</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section class="gallery">
+    <div class="shead">
+      <span class="eyebrow accent-eyebrow c-rust">The Collection</span>
+      <h2>Selected Works</h2>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="frame"><span class="br"></span>
+          <div class="media" data-img>
+            <img src="https://media.discordapp.net/attachments/1517117620451676190/1517117754665209936/image.png?ex=6a351d83&is=6a33cc03&hm=d560023634e0d61395056dceb67ec99b5a46a3820a9ad135a296ef00b2c074c9&=&format=webp&quality=lossless&width=1491&height=827" alt="3D work by Tima" loading="lazy" decoding="async">
+            <div class="ph"><span class="eyebrow">Work I</span><span>Image unavailable</span></div>
+          </div>
+        </div>
+        <p class="meta">Terrain &middot; Render</p>
+      </article>
+
+      <article class="card">
+        <div class="frame"><span class="br"></span>
+          <div class="media" data-img>
+            <img src="https://media.discordapp.net/attachments/1516424059490144308/1517280311845589083/mountainsboi.png?ex=6a35b4e8&is=6a346368&hm=a345d556ec4b49bb186812c0a6274af33883602dffdd953ca6b0bfcc7fd956cd&=&format=webp&quality=lossless&width=1704&height=958" alt="3D work by Tima" loading="lazy" decoding="async">
+            <div class="ph"><span class="eyebrow">Work II</span><span>Image unavailable</span></div>
+          </div>
+        </div>
+        <p class="meta">Environment</p>
+      </article>
+
+      <article class="card">
+        <div class="frame"><span class="br"></span>
+          <div class="media" data-img>
+            <img src="https://media.discordapp.net/attachments/1516424059490144308/1517280313112395938/image.png?ex=6a35b4e8&is=6a346368&hm=410438b44d838d42741f1a6a47b0f027a4bf58831219bfecdaa0dc30002cd06e&=&format=webp&quality=lossless&width=825&height=660" alt="3D work by Tima" loading="lazy" decoding="async">
+            <div class="ph"><span class="eyebrow">Work III</span><span>Image unavailable</span></div>
+          </div>
+        </div>
+        <p class="meta">Realistic Render</p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= SCRAPS ================= -->
+  <section class="scraps-section">
+    <details class="scraps">
+      <summary>
+        <span class="scraps-title">Scraps</span>
+        <span class="scraps-hint"></span>
+      </summary>
+      <div class="grid scraps-grid">
+        <article class="card"><div class="frame"><span class="br"></span><div class="media" data-img><img src="https://media.discordapp.net/attachments/1517117620451676190/1517117754220740618/Screenshot_2026-05-10_165312.png?ex=6a351d83&is=6a33cc03&hm=7ce34c4804357e339bebe565fede86f3066f03108ce98bfc7b17271a1d00fe75&=&format=webp&quality=lossless&width=1467&height=958" alt="3D scrap by Tima" loading="lazy" decoding="async"><div class="ph"><span class="eyebrow">Scrap</span><span>Image unavailable</span></div></div></div></article>
+        <article class="card"><div class="frame"><span class="br"></span><div class="media" data-img><img src="https://media.discordapp.net/attachments/1517117620451676190/1517117753566171236/image.png?ex=6a351d83&is=6a33cc03&hm=2397f34d87d4be3f31ac465a70343ca26ccfaf9456be4a3f5c26ff4a614865e1&=&format=webp&quality=lossless&width=1752&height=944" alt="3D scrap by Tima" loading="lazy" decoding="async"><div class="ph"><span class="eyebrow">Scrap</span><span>Image unavailable</span></div></div></div></article>
+        <article class="card"><div class="frame"><span class="br"></span><div class="media" data-img><img src="https://media.discordapp.net/attachments/1516424059490144308/1517280313527767182/waterdork.png?ex=6a35b4e8&is=6a346368&hm=9a08f2d3a98fce61bc6f6c27eafbf3539427e0d430ccf9df0dbaa0fd06e2a7cd&=&format=webp&quality=lossless&width=1610&height=958" alt="3D scrap by Tima" loading="lazy" decoding="async"><div class="ph"><span class="eyebrow">Scrap</span><span>Image unavailable</span></div></div></div></article>
+        <article class="card"><div class="frame"><span class="br"></span><div class="media" data-img><img src="https://media.discordapp.net/attachments/1516424059490144308/1517280313993203843/imagenoob.png?ex=6a35b4e8&is=6a346368&hm=5853e54e607932650e08ede8beddc96fdf3a7fd3e9cd6171c8ffa9cfe53916ea&=&format=webp&quality=lossless&width=1245&height=958" alt="3D scrap by Tima" loading="lazy" decoding="async"><div class="ph"><span class="eyebrow">Scrap</span><span>Image unavailable</span></div></div></div></article>
+        <article class="card"><div class="frame"><span class="br"></span><div class="media" data-img><img src="https://media.discordapp.net/attachments/1516424059490144308/1517280312613404733/imageokay.png?ex=6a35b4e8&is=6a346368&hm=ce4d59e5e53706e880bf986ca2d8f893c7ca9602dac9959c6dca192740ffd7d5&=&format=webp&quality=lossless&width=1262&height=958" alt="3D scrap by Tima" loading="lazy" decoding="async"><div class="ph"><span class="eyebrow">Scrap</span><span>Image unavailable</span></div></div></div></article>
+        <article class="card"><div class="frame"><span class="br"></span><div class="media" data-img><img src="https://media.discordapp.net/attachments/1516424059490144308/1517227992173117561/image.png?ex=6a35842e&is=6a3432ae&hm=3a9ce86e2a5be051605929002d8cbc777b00e28e53b0963b4e93c939a77181a7&=&format=webp&quality=lossless&width=1719&height=956" alt="3D scrap by Tima" loading="lazy" decoding="async"><div class="ph"><span class="eyebrow">Scrap</span><span>Image unavailable</span></div></div></div></article>
+      </div>
+    </details>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="about">
+    <div class="shead">
+      <h2>About Me</h2>
+    </div>
+    <div class="frame"><span class="br"></span>
+      <div class="panel">
+        <p>My name is Tima, and I have worked as a studio developer for about two to three years. I was first introduced to Blender five to six years ago, where I learned procedural techniques, sculpting with simple shapes, and the basic controls.</p>
+        <p>After my family moved to a different city, I stepped away from Blender for around a year before coming back to it. I started by making random projects until things finally clicked, and I found a job that introduced me to realistic rendering. The tasks were fairly simple at first. I created realistic planets, galaxies, and other models for websites, and this is where my interest in realism really began to grow.</p>
+        <p>Later, when I went looking for mountains, I could not find any that fit, so I started searching for a realistic terrain solver. That is when I came across Gaea and KTT for Houdini. I tried Gaea first, but I was quickly held back by its export limit. Then the developer of KTT kindly gifted the tool to me, and I began creating terrain there. Most of what you see in my renders is made with Gaea and KTT.</p>
+      </div>
+      <div id="aboutCloudL"></div>
+      <div id="aboutCloudR"></div>
+      <div id="aboutCloudB"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="rule"><span class="gem">&#9670; &#9670; &#9670;</span></div>
+    <p class="fine">3D Artist &middot; Studio Developer &middot; Terrain &amp; Realism</p>
+  </footer>
+
+</main>
+</div>
+
+<script>
+(function(){
+  // graceful image fallback
+  document.querySelectorAll('.media[data-img] img').forEach(function(img){
+    img.addEventListener('error',function(){
+      img.closest('.media').setAttribute('data-failed','1');
+    });
+  });
+  // theme toggle
+  var root=document.documentElement;
+  var btn=document.getElementById('themeToggle');
+  var icon=document.getElementById('themeIcon');
+  var label=document.getElementById('themeLabel');
+  function apply(night){
+    root.classList.toggle('night',night);
+    icon.innerHTML=night?'\u2600':'\u263D';
+    label.textContent=night?'Day mode':'Night mode';
+  }
+  btn.addEventListener('click',function(){
+    apply(!root.classList.contains('night'));
+  });
+})();
+</script>
+<script>
+/* Custom volumetric clouds (document-space canvas, scrolls with the page).
+   Works/About get soft cloud bands. The top of the site gets a big animated
+   top: a big soft collector cloud bank with mist drifting down below. */
+(function(){
+  var cv = document.getElementById('cloudgl');
+  if(!cv) return;
+  var gl = cv.getContext('webgl', {alpha:true, premultipliedAlpha:true, antialias:false});
+  if(!gl){ cv.style.display='none'; return; }
+
+  var VS = `attribute vec2 aPos; void main(){ gl_Position = vec4(aPos,0.0,1.0); }`;
+
+  var FS = `
+  precision highp float;
+  uniform vec2 uRes;
+  uniform float uTime;
+  uniform float uScale;
+  uniform int uCount;
+  uniform float uClipY;       // doc px (device): top of About section
+  uniform vec4 uBands[16];    // x=center, y=bottom-edge(doc), z=width, w=height (device px)
+  uniform vec4 uParams[16];   // x=densityMul, y=wisp(0..1), z=sideFalloff, w=belowMul
+  uniform vec4 uTop;          // x=center, y=bottom(doc), z=width, w=height (device px)
+  uniform float uTopOn;
+
+  float hash(vec2 p){ p = fract(p*vec2(127.31,311.7)); p += dot(p, p+34.23); return fract(p.x*p.y); }
+  float vnoise(vec2 p){
+    vec2 i=floor(p), f=fract(p);
+    vec2 u=f*f*(3.0-2.0*f);
+    float a=hash(i), b=hash(i+vec2(1.0,0.0)), c=hash(i+vec2(0.0,1.0)), d=hash(i+vec2(1.0,1.0));
+    return mix(mix(a,b,u.x), mix(c,d,u.x), u.y);
+  }
+  float fbm(vec2 p){
+    float v=0.0, a=0.55; mat2 m=mat2(1.6,1.2,-1.2,1.6);
+    for(int i=0;i<7;i++){ v += a*vnoise(p); p = m*p + 0.02; a *= 0.5; }
+    return v;
+  }
+
+  float billow(vec2 p){
+    float v=0.0, a=0.55; mat2 m=mat2(1.6,1.2,-1.2,1.6);
+    for(int i=0;i<7;i++){ v += a*abs(vnoise(p)*2.0-1.0); p = m*p + 0.02; a *= 0.5; }
+    return v;
+  }
+
+  float dens(vec2 px, vec4 b, vec4 p, float t){
+    float w=b.z, h=b.w;
+    if(w<2.0||h<2.0) return 0.0;
+    float densMul = p.x;
+    float wisp = p.y;
+    float sideFall = max(p.z, 0.05);
+    float belowMul = max(p.w, 0.05);
+    float halfw = w*0.64;
+    float lx = px.x - b.x;
+    float hx = 1.0 - smoothstep(halfw*0.60, halfw, abs(lx));
+    hx = pow(clamp(hx,0.0,1.0), sideFall);
+    if(hx<=0.002) return 0.0;
+    float yb = px.y - b.y;
+    float aboveTop = mix(-0.30, -0.85, wisp) * h;
+    float aboveFade = smoothstep(aboveTop, 0.02*h, yb);
+    float belowFade = exp(-clamp(yb,0.0,1.0e6)/(belowMul*h));
+    float env = aboveFade*belowFade;
+    if(env<=0.003) return 0.0;
+    float freq = mix(0.0020, 0.0014, wisp);
+    vec2 q = px*freq + vec2(t*0.013, 0.0);
+    vec2 wrp = vec2(fbm(q+vec2(0.0,t*0.008)), fbm(q+vec2(4.7,2.1)));
+    float base = fbm(q*1.55 + wrp*1.2);
+    float detail = fbm(q*4.2 + wrp*2.4);
+    float dmix = mix(0.2, 0.12, wisp);
+    float n = base*(1.0-dmix) + detail*dmix;
+    float thr = mix(0.41, 0.50, wisp);
+    float gain = mix(2.8, 2.15, wisp);
+    float d = (n-thr)*gain;
+    return clamp(d,0.0,1.0)*env*hx*densMul;
+  }
+
+  // Soft, sparse mist at the top with a gentle downward drift (not columnar).
+  float tornado(vec2 px, vec4 T, float t){
+    float cx = T.x, by = T.y, halfW = T.z*0.5;
+    float yy = px.y;
+    if(yy > by) return 0.0;
+    float lx = px.x - cx;
+    float rr = abs(lx)/max(halfW,1.0);
+    float radial = 1.0 - smoothstep(0.92, 1.08, rr);      // spans full width, soft sides
+    if(radial<=0.001) return 0.0;
+    float topFade = smoothstep(0.0, by*0.10, yy);         // soft at the very top edge
+    float botFade = 1.0 - smoothstep(by*0.38, by, yy);    // thin out toward the bottom
+    float env = topFade*botFade;
+    if(env<=0.003) return 0.0;
+    float ph = -t*0.09;                                   // gentle downward drift
+    // only a mild vertical bias; heavy turbulence breaks up any columns
+    vec2 q = vec2(px.x*0.0090, px.y*0.0042 + ph);
+    vec2 wrp = vec2(fbm(q*0.8 + vec2(0.0, ph*0.6))*1.4, fbm(q*0.8 + vec2(4.1,1.7))*1.6);
+    float n = fbm(q*1.15 + wrp);
+    float d = (n - 0.54)*1.8;                             // high threshold, gentle gain
+    return clamp(d,0.0,1.0)*env*radial;
+  }
+
+  // Volumetric collector-cloud density at the very top (puffy billows).
+  float cden(vec2 px){
+    vec4 T = uTop; float t = uTime;
+    float cx = T.x, by = T.y, halfW = T.z*0.5;
+    float yy = px.y;
+    float band = by*0.66;
+    if(yy > band) return 0.0;
+    float lx = px.x - cx;
+    float rr = abs(lx)/max(halfW,1.0);
+    float radial = 1.0 - smoothstep(1.04, 1.22, rr);
+    if(radial<=0.001) return 0.0;
+    float vfade = 1.0 - smoothstep(band*0.45, band, yy);  // dense top, soft billowy base
+    vec2 q = px*0.0014 + vec2(t*0.008, 0.0);
+    vec2 wrp = vec2(fbm(q + vec2(0.0, t*0.02)), fbm(q + vec2(3.1,1.2)));
+    float shape = billow(q*1.25 + wrp*1.1);              // puffy cauliflower structure
+    float shape2 = billow(q*2.0 + wrp*1.5 + vec2(9.3,3.7)); // extra cloud lumps
+    float erode = fbm(q*3.8 + wrp*2.4);                  // breaks up the silhouette
+    float lumps = shape*0.6 + shape2*0.4;
+    float n = lumps*0.80 + erode*0.20;
+    float d = (n - 0.23)*2.1;
+    return clamp(d,0.0,1.0)*vfade*radial;
+  }
+
+  // Faint, sparse clouds drifting randomly across the whole page.
+  float drift(vec2 px){
+    float t = uTime;
+    vec2 q = vec2(px.x*0.0015, px.y*0.0040) + vec2(t*0.006, t*0.0010);
+    vec2 wrp = vec2(fbm(q*0.7 + vec2(0.0, t*0.012)), fbm(q*0.7 + vec2(4.2,1.3)));
+    float n = fbm(q*1.25 + wrp*1.9);   // soft fbm wisps (no round billows)
+    float d = (n - 0.54)*1.25;         // thin, translucent wisps
+    return clamp(d,0.0,1.0);
+  }
+
+  void main(){
+    vec2 px = vec2(gl_FragCoord.x, uRes.y - gl_FragCoord.y) / uScale;
+    vec3 col = vec3(0.0);
+    float acc = 0.0;
+    vec2 L = normalize(vec2(-0.55,-0.95));
+    // faint random clouds floating across the page (ambient, low opacity)
+    {
+      float dd = drift(px);
+      if(dd > 0.004){
+        vec3 c = vec3(0.78,0.77,0.75) + 0.06*dd;   // soft tone, never pure white
+        float a = clamp(dd*0.18, 0.0, 1.0);
+        col = mix(col, c, a*(1.0-acc));
+        acc += a*(1.0-acc);
+      }
+    }
+    for(int i=0;i<16;i++){
+      if(i>=uCount) break;
+      vec4 b = uBands[i];
+      vec4 p = uParams[i];
+      if(p.y < 0.5 && uClipY > 0.5 && px.y > uClipY) continue;
+      float d = dens(px, b, p, uTime);
+      if(d<=0.003) continue;
+      float st = b.w*0.035;
+      float sh = dens(px+L*st, b, p, uTime)*0.7
+               + dens(px+L*st*2.3, b, p, uTime)*0.5
+               + dens(px+L*st*4.0, b, p, uTime)*0.3;
+      float light = exp(-sh*1.35);
+      vec3 lit    = vec3(0.93,0.925,0.915);
+      vec3 shadow = vec3(0.66,0.645,0.62);
+      vec3 c = mix(shadow, lit, light);
+      float a = clamp(d*1.25, 0.0, 1.0);
+      col = mix(col, c, a*(1.0-acc));
+      acc += a*(1.0-acc);
+    }
+    // big collector cloud bank (self-shadowed, volumetric) + mist drifting below
+    if(uTopOn > 0.5){
+      float d = cden(px);
+      if(d > 0.004){
+        vec2 sstep = L * (uTop.w*0.072);
+        float sh = 0.0, sw = 1.0;
+        for(int k=1;k<=5;k++){ sh += cden(px + sstep*float(k))*sw; sw *= 0.82; }
+        float light = exp(-sh*1.7);
+        float above = cden(px + vec2(0.0,-uTop.w*0.10))*0.6 + cden(px + vec2(0.0,-uTop.w*0.18))*0.4; // smoother dark base
+        float ao = 1.0 - 0.55*clamp(above, 0.0, 1.0);
+        float lv = clamp(light*ao, 0.0, 1.0);
+        vec3 c = mix(vec3(0.66,0.645,0.62), vec3(0.93,0.925,0.915), lv);
+        float a = clamp(d*1.35, 0.0, 1.0);
+        col = mix(col, c, a*(1.0-acc));
+        acc += a*(1.0-acc);
+      }
+      float td = clamp(tornado(px, uTop, uTime)*1.10, 0.0, 1.0);
+      if(td > 0.003){
+        float st = uTop.w*0.03;
+        float msh = tornado(px+L*st, uTop, uTime)*0.7
+                  + tornado(px+L*st*2.2, uTop, uTime)*0.45
+                  + tornado(px+L*st*4.0, uTop, uTime)*0.25;
+        float mlight = exp(-msh*1.6);
+        float mao = 1.0 - 0.45*clamp(tornado(px + vec2(0.0,-uTop.w*0.04), uTop, uTime), 0.0, 1.0);
+        vec3 mc = mix(vec3(0.66,0.645,0.62), vec3(0.93,0.925,0.915), clamp(mlight*mao,0.0,1.0));
+        col = mix(col, mc, td*(1.0-acc));
+        acc += td*(1.0-acc);
+      }
+    }
+    float aout = clamp(acc,0.0,1.0)*0.98;
+    gl_FragColor = vec4(col*aout, aout);
+  }`;
+
+  function compile(type, src){
+    var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+    if(!gl.getShaderParameter(s, gl.COMPILE_STATUS)){ console.warn('cloud shader:', gl.getShaderInfoLog(s)); return null; }
+    return s;
+  }
+  var vs = compile(gl.VERTEX_SHADER, VS), fs = compile(gl.FRAGMENT_SHADER, FS);
+  if(!vs||!fs){ cv.style.display='none'; return; }
+  var prog = gl.createProgram(); gl.attachShader(prog,vs); gl.attachShader(prog,fs); gl.linkProgram(prog);
+  if(!gl.getProgramParameter(prog, gl.LINK_STATUS)){ console.warn('cloud link:', gl.getProgramInfoLog(prog)); cv.style.display='none'; return; }
+  gl.useProgram(prog);
+
+  var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+  var aPos = gl.getAttribLocation(prog,'aPos'); gl.enableVertexAttribArray(aPos);
+  gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+  var uRes = gl.getUniformLocation(prog,'uRes');
+  var uScale = gl.getUniformLocation(prog,'uScale');
+  var uTime = gl.getUniformLocation(prog,'uTime');
+  var uCount = gl.getUniformLocation(prog,'uCount');
+  var uClipY = gl.getUniformLocation(prog,'uClipY');
+  var uBands = gl.getUniformLocation(prog,'uBands[0]');
+  var uParams = gl.getUniformLocation(prog,'uParams[0]');
+  var uTop = gl.getUniformLocation(prog,'uTop');
+  var uTopOn = gl.getUniformLocation(prog,'uTopOn');
+
+  gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+
+  var dpr = 1;
+  var RS = 0.5; // cloud render scale: 0.5 = quarter the pixels
+  var docW = 0, docH = 0;
+  function docHeight(){
+    var b=document.body, e=document.documentElement;
+    return Math.max(b.scrollHeight, e.scrollHeight, b.offsetHeight, e.offsetHeight, e.clientHeight);
+  }
+  function resize(){
+    cv.style.height = '0px';
+    docW = document.documentElement.clientWidth;
+    docH = docHeight();
+    cv.style.width = docW + 'px';
+    cv.style.height = docH + 'px';
+    cv.width = Math.max(1, Math.floor(docW*RS));
+    cv.height = Math.max(1, Math.floor(docH*RS));
+    gl.viewport(0,0,cv.width,cv.height);
+  }
+  addEventListener('resize', resize);
+  addEventListener('load', resize);
+
+  var MAX = 16;
+  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var t0 = performance.now();
+  var bandData = new Float32Array(MAX*4);
+  var paramData = new Float32Array(MAX*4);
+  var tick = 0;
+
+  // p=[densityMul, wisp, sideFalloff, belowMul], s=size scale
+  var cachedTargets = null;
+  function targets(){
+    if(cachedTargets) return cachedTargets;
+    var list = [];
+    function add(sel, p, s){
+      var els = document.querySelectorAll(sel);
+      for(var k=0;k<els.length;k++) list.push({e:els[k], p:p, s:s});
+    }
+    function one(id, p, s){ var el=document.getElementById(id); if(el) list.push({e:el, p:p, s:s}); }
+    add('.featured .media', [1.0, 0.0, 1.0, 0.55], 1.0);
+    add('.grid:not(.scraps-grid) .media', [1.0, 0.0, 1.0, 0.55], 1.12);
+    add('.scraps-grid .media', [1.0, 0.0, 1.0, 0.30], 1.0);
+    one('aboutCloudL', [0.65, 0.85, 1.35, 0.5], 1.25);
+    one('aboutCloudR', [0.65, 0.85, 1.35, 0.5], 1.25);
+    one('aboutCloudB', [1.35, 0.7, 2.2, 0.6], 1.4);
+    cachedTargets = list.slice(0, MAX);
+    return cachedTargets;
+  }
+
+  // Recompute per-element geometry only when the scroll position changes.
+  function updateGeometry(sy){
+    var ab = document.querySelector('.about');
+    var clipY = ab ? (ab.getBoundingClientRect().top + sy)*dpr : 1.0e9;
+    var tg = targets();
+    var n = Math.min(tg.length, MAX);
+    for(var i=0;i<MAX*4;i++){ bandData[i]=0; paramData[i]=0; }
+    for(var j=0;j<n;j++){
+      var it = tg[j];
+      var r = it.e.getBoundingClientRect();
+      var s = it.s, o = j*4;
+      bandData[o]   = (r.left + r.width*0.5)*dpr;
+      bandData[o+1] = (r.bottom + sy)*dpr;
+      bandData[o+2] = r.width*s*dpr;
+      bandData[o+3] = r.height*s*dpr;
+      paramData[o]   = it.p[0];
+      paramData[o+1] = it.p[1];
+      paramData[o+2] = it.p[2];
+      paramData[o+3] = it.p[3];
+    }
+    var topOn = 0.0;
+    var tc = document.getElementById('topCloud');
+    if(tc){
+      var rt = tc.getBoundingClientRect();
+      gl.uniform4f(uTop, (rt.left + rt.width*0.5)*dpr, (rt.bottom + sy)*dpr, rt.width*dpr, rt.height*dpr);
+      topOn = 1.0;
+    }
+    gl.uniform2f(uRes, cv.width, cv.height);
+    gl.uniform1f(uScale, RS);
+    gl.uniform1i(uCount, n);
+    gl.uniform1f(uClipY, clipY);
+    gl.uniform4fv(uBands, bandData);
+    gl.uniform4fv(uParams, paramData);
+    gl.uniform1f(uTopOn, topOn);
+  }
+
+  var running = true, lastDraw = 0, dimTick = 0;
+  var lastW = -1, lastH = -1, lastSy = -1;
+  var FRAME_MS = 1000/30; // ~30fps is plenty for slow ambient clouds
+  function frame(now){
+    if(!running) return;
+    requestAnimationFrame(frame);
+    if(now - lastDraw < FRAME_MS) return; // throttle
+    lastDraw = now;
+    // Check for layout/size changes only occasionally (avoids per-frame reflow).
+    if((dimTick++ % 12) === 0){
+      var w = document.documentElement.clientWidth, h = docHeight();
+      if(w !== lastW || h !== lastH){ resize(); lastW = w; lastH = h; cachedTargets = null; lastSy = -1; }
+    }
+    var needDraw = !reduce;
+    var sy = window.scrollY || window.pageYOffset || 0;
+    if(sy !== lastSy){ updateGeometry(sy); lastSy = sy; needDraw = true; }
+    gl.uniform1f(uTime, reduce ? 14.0 : (now - t0)*0.001);
+    if(needDraw){
+      gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+  }
+  // Stop animating entirely when the tab is not visible.
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden){ running = false; }
+    else if(!running){ running = true; lastDraw = 0; lastSy = -1; requestAnimationFrame(frame); }
+  });
+  resize(); lastW = document.documentElement.clientWidth; lastH = docHeight();
+  requestAnimationFrame(frame);
+  setTimeout(function(){ cachedTargets=null; lastW=-1; lastSy=-1; }, 300);
+  setTimeout(function(){ cachedTargets=null; lastW=-1; lastSy=-1; }, 900);
+})();
+</script>
+<div id="lightbox" aria-hidden="true"><button class="lb-close" aria-label="Close">&times;</button><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById("lightbox");
+  var lbImg=lb.querySelector("img");
+  function openLb(src,alt){ lbImg.src=src; lbImg.alt=alt||""; lb.classList.add("open"); lb.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; }
+  function closeLb(){ lb.classList.remove("open"); lb.setAttribute("aria-hidden","true"); lbImg.removeAttribute("src"); document.body.style.overflow=""; }
+  document.querySelectorAll("[data-img] img").forEach(function(img){
+    img.addEventListener("click",function(e){ e.preventDefault(); openLb(img.currentSrc||img.src, img.alt); });
+  });
+  lb.addEventListener("click",function(){ closeLb(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeLb(); });
+})();
+</script>
+</body>
+</html>
